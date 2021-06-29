@@ -1,1 +1,2 @@
-# ml_and_nlp_course_2021
+# NLP and ML in graphs 
+

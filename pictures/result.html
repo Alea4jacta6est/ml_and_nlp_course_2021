@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "\u042d\u0432\u0430\u043d \u0420\u044d\u0439\u0447\u0435\u043b \u0412\u0443\u0434", "label": "\u042d\u0432\u0430\u043d \u0420\u044d\u0439\u0447\u0435\u043b \u0412\u0443\u0434", "shape": "dot", "size": 10}, {"id": "\u042d\u043d\u0442\u043e\u043d\u0438 \u0425\u043e\u043f\u043a\u0438\u043d\u0441", "label": "\u042d\u043d\u0442\u043e\u043d\u0438 \u0425\u043e\u043f\u043a\u0438\u043d\u0441", "shape": "dot", "size": 10}, {"id": "\u0411\u0440\u044d\u0434\u0434 \u041f\u0438\u0442\u0442", "label": "\u0411\u0440\u044d\u0434\u0434 \u041f\u0438\u0442\u0442", "shape": "dot", "size": 10}, {"id": "\u041b\u0435\u043e\u043d\u0430\u0440\u0434\u043e \u0434\u0438 \u041a\u0430\u043f\u0440\u0438\u043e", "label": "\u041b\u0435\u043e\u043d\u0430\u0440\u0434\u043e \u0434\u0438 \u041a\u0430\u043f\u0440\u0438\u043e", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "\u042d\u0432\u0430\u043d \u0420\u044d\u0439\u0447\u0435\u043b \u0412\u0443\u0434", "to": "\u042d\u043d\u0442\u043e\u043d\u0438 \u0425\u043e\u043f\u043a\u0438\u043d\u0441", "weight": 1}, {"from": "\u042d\u0432\u0430\u043d \u0420\u044d\u0439\u0447\u0435\u043b \u0412\u0443\u0434", "to": "\u0411\u0440\u044d\u0434\u0434 \u041f\u0438\u0442\u0442", "weight": 2}, {"from": "\u0411\u0440\u044d\u0434\u0434 \u041f\u0438\u0442\u0442", "to": "\u041b\u0435\u043e\u043d\u0430\u0440\u0434\u043e \u0434\u0438 \u041a\u0430\u043f\u0440\u0438\u043e", "weight": 5}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
